@@ -15,15 +15,21 @@
     </Filter>
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="src\Terry\Application.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Terry.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
     <ClInclude Include="src\Terry\Core.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="src\Application.h">
+    <ClInclude Include="src\Terry\EntryPoint.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="src\Application.cpp">
+    <ClCompile Include="src\Terry\Application.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
