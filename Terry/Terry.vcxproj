@@ -15,9 +15,11 @@
     <ClInclude Include="src\Terry\Core.h" />
     <ClInclude Include="src\Terry.h" />
     <ClInclude Include="src\Terry\EntryPoint.h" />
+    <ClInclude Include="src\Terry\Log.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="src\Terry\Application.cpp" />
+    <ClCompile Include="src\Terry\Log.cpp" />
   </ItemGroup>
   <PropertyGroup Label="Globals">
     <VCProjectVersion>15.0</VCProjectVersion>
@@ -65,6 +67,7 @@
       <Optimization>Disabled</Optimization>
       <SDLCheck>true</SDLCheck>
       <PreprocessorDefinitions>TR_PLATFORM_WINDOW;TR_BUILD_DLL;_WINDLL;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <AdditionalIncludeDirectories>$(SolutionDir)Terry\vendor\spdlog\include;</AdditionalIncludeDirectories>
     </ClCompile>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
@@ -75,6 +78,7 @@
       <IntrinsicFunctions>true</IntrinsicFunctions>
       <SDLCheck>true</SDLCheck>
       <PreprocessorDefinitions>TR_PLATFORM_WINDOW;TR_BUILD_DLL;_WINDLL;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <AdditionalIncludeDirectories>$(SolutionDir)Terry\vendor\spdlog\include;</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <EnableCOMDATFolding>true</EnableCOMDATFolding>
