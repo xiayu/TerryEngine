@@ -1,3 +1,4 @@
+#include "trpch.h"
 #include "Application.h"
 #include "Terry/Events/ApplicationEvent.h"
 #include "Terry/Log.h"

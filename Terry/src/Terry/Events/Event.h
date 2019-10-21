@@ -1,9 +1,6 @@
 #pragma once
 
 #include "Terry/Core.h"
-#include <string>
-#include <functional>
-#include <ostream>
 
 namespace Terry {
 	// enum class represent Integer can't transfor to EventType

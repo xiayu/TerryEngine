@@ -1,7 +1,6 @@
 #pragma once
 #include "Terry/Core.h"
 #include "Terry/Events/Event.h"
-#include <sstream>
 
 namespace Terry {
 	class TR_API KeyEvent :public Event {

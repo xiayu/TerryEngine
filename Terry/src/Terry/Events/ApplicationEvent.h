@@ -1,8 +1,6 @@
 #pragma once
 #include "Terry/Core.h"
 #include "Terry/Events/Event.h"
-#include <string>
-#include <sstream>
 namespace Terry {
 	class TR_API WindowResizedEvent :public Event {
 	public:

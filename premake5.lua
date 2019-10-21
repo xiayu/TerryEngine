@@ -24,6 +24,9 @@ project "Terry"
 	targetdir ("bin/" .. outputdir .. "/%{prj.name}")
 	objdir ("bin-int/" .. outputdir .. "/%{prj.name}")
 
+	pchheader "trpch.h"
+	pchsource "Terry/src/trpch.cpp"
+
 	files
 	{
 		-- ** represent recursive search
@@ -43,7 +46,7 @@ project "Terry"
 	}
 
 	filter "system:windows"
-		cppdialect "c++17"
+		cppdialect "c++14"
 		staticruntime "On"
 		systemversion "latest"
 
@@ -97,7 +100,7 @@ project "SanBox"
 	}
 
 	filter "system:windows"
-		cppdialect "c++17"
+		cppdialect "c++14"
 		staticruntime "On"
 		systemversion "latest"
 
