@@ -16,6 +16,11 @@ workspace "Terry"
 --            {Debug\Release\Dist}-{windows\mac\linux}-{x64}
 outputdir = "%{cfg.buildcfg}-%{cfg.system}-%{cfg.architecture}"
 
+IncludeDir = {}
+IncludeDir["GLFW"] = "Terry/vendor/glfw/include"
+
+include "Terry/vendor/glfw"
+
 project "Terry"
 	location "Terry"
 	kind "SharedLib"
@@ -42,7 +47,14 @@ project "Terry"
 	includedirs
 	{
 		"%{prj.name}/src",
-		"%{prj.name}/vendor/spdlog/include"
+		"%{prj.name}/vendor/spdlog/include",
+		"%{IncludeDir.GLFW}"
+	}
+
+	links
+	{
+		"GLFW",
+		"opengl32.lib"
 	}
 
 	filter "system:windows"
