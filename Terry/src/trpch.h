@@ -5,3 +5,7 @@
 #include <map>
 #include <ostream>
 #include <sstream>
+
+#include <memory>
+
+#include "Terry/Log.h"

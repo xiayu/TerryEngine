@@ -65,7 +65,8 @@ project "Terry"
 		defines
 		{
 			"TR_PLATFORM_WINDOW",
-			"TR_BUILD_DLL"
+			"TR_BUILD_DLL",
+			"TR_ENABLE_ASSERTS"
 		}
 
 		postbuildcommands
@@ -119,6 +120,7 @@ project "SanBox"
 		defines
 		{
 			"TR_PLATFORM_WINDOW",
+			"TR_ENABLE_ASSERTS"
 		}
 
 	filter "configurations:Debug"
