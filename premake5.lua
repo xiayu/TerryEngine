@@ -18,8 +18,10 @@ outputdir = "%{cfg.buildcfg}-%{cfg.system}-%{cfg.architecture}"
 
 IncludeDir = {}
 IncludeDir["GLFW"] = "Terry/vendor/glfw/include"
+IncludeDir["GLAD"] = "Terry/vendor/glad/include"
 
 include "Terry/vendor/glfw"
+include "Terry/vendor/glad"
 
 project "Terry"
 	location "Terry"
@@ -48,12 +50,14 @@ project "Terry"
 	{
 		"%{prj.name}/src",
 		"%{prj.name}/vendor/spdlog/include",
-		"%{IncludeDir.GLFW}"
+		"%{IncludeDir.GLFW}",
+		"%{IncludeDir.GLAD}"
 	}
 
 	links
 	{
 		"GLFW",
+		"GLAD",
 		"opengl32.lib"
 	}
 
@@ -66,7 +70,8 @@ project "Terry"
 		{
 			"TR_PLATFORM_WINDOW",
 			"TR_BUILD_DLL",
-			"TR_ENABLE_ASSERTS"
+			"TR_ENABLE_ASSERTS",
+			"GLFW_INCLUDE_NONE"
 		}
 
 		postbuildcommands
@@ -76,14 +81,17 @@ project "Terry"
 		
 	filter "configurations:Debug"
 		defines "TR_DEBUG"
+		buildoptions "/MDd"
 		symbols "On"
 
 	filter "configurations:Release"
 		defines "TR_RELEASE"
+		buildoptions "/MD"
 		optimize "On"
 
 	filter "configurations:Dist"
 		defines "TR_DIST"
+		buildoptions "/MD"
 		optimize "On"
 
 project "SanBox"
@@ -125,13 +133,16 @@ project "SanBox"
 
 	filter "configurations:Debug"
 		defines "TR_DEBUG"
+		buildoptions "/MDd"
 		symbols "On"
 
 	filter "configurations:Release"
 		defines "TR_RELEASE"
+		buildoptions "/MD"
 		optimize "On"
 
 	filter "configurations:Dist"
 		defines "TR_DIST"
+		buildoptions "/MD"
 		optimize "On"
 
