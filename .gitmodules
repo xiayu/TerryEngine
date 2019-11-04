@@ -4,3 +4,6 @@
 [submodule "Terry/vendor/glfw"]
 	path = Terry/vendor/glfw
 	url = https://github.com/TheCherno/glfw
+[submodule "Terry/vendor/imgui"]
+	path = Terry/vendor/imgui
+	url = https://github.com/TheCherno/imgui
