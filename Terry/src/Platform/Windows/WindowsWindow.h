@@ -12,6 +12,7 @@ namespace Terry {
 		inline unsigned int GetWidth() const override { return m_Data.Width; }
 		inline unsigned int GetHeight() const override { return m_Data.Height; }
 
+		inline virtual void* GetNativeWindow() const override { return m_Window; }
 
 		inline void SetEventCallback(const EventCallbackFn& callback) override { m_Data.EventCallback = callback; }
 
@@ -20,8 +21,8 @@ namespace Terry {
 	private:
 		virtual void Init(const WindowProps& props);
 		virtual void Shutdown();
-		GLFWwindow *m_Window;
-
+		GLFWwindow *m_Window; // this is the native window
+		// pass the data to glfw
 		struct WindowData
 		{
 			std::string Title;

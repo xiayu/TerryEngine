@@ -5,6 +5,12 @@
 #include "Terry/Core.h"
 #include "Terry/Log.h"
 
+#include "Terry/Input.h"
+#include "Terry/KeyCodes.h"
+#include "Terry/MouseButtonCodes.h"
+
+#include "Terry/ImGui/ImGuiLayer.h"
+
 /**************EntryPoint******************/
 #include "Terry\EntryPoint.h"
 /******************************************/

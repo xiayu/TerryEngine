@@ -27,6 +27,7 @@ namespace Terry {
 #define TR_CORE_WARN(...)       Terry::Log::GetCoreLogger()->warn(__VA_ARGS__)
 #define TR_CORE_ERROR(...)      Terry::Log::GetCoreLogger()->error(__VA_ARGS__)
 #define TR_CORE_FATAL(...)      Terry::Log::GetCoreLogger()->fatal(__VA_ARGS__)
+
 // client log macros
 #define TR_TRACE(...)			Terry::Log::GetClientLogger()->trace(__VA_ARGS__)
 #define TR_INFO(...)			Terry::Log::GetClientLogger()->info(__VA_ARGS__)

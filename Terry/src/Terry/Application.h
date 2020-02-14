@@ -15,15 +15,20 @@ namespace Terry {
 		void Run();
 
 		void OnEvent(Event& e);
-
+		//layer
 		void PushLayer(Layer* layer);
 		void PushOverlay(Layer* overlay);
 
+		inline std::unique_ptr<Window>& GetWindow() { return m_Window; }
+
+		inline static Application& Get() { return *m_Instance; }
 	private:
 		bool OnWindowClose(WindowCloseEvent& e);
 		std::unique_ptr<Window> m_Window;
 		bool m_Running = true;
+		// layer stack
 		LayerStack m_LayerStack;
+		static Application* m_Instance;
 	};
 	// to be defined in CLIENT
 	Application* CreateApplication();

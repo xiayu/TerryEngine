@@ -1,6 +1,7 @@
 #pragma once
 #ifdef TR_PLATFORM_WINDOW
 extern Terry::Application* Terry::CreateApplication();
+
 int main(int argc, char** argv) {
 
 	Terry::Log::Init();

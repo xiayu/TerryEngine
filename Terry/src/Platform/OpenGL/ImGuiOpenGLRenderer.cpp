@@ -57,6 +57,7 @@
 #include "imgui.h"
 #include "ImGuiOpenGLRenderer.h"
 #include "glad/glad.h"
+
 #include <stdio.h>
 #if defined(_MSC_VER) && _MSC_VER <= 1500 // MSVC 2008 or earlier
 #include <stddef.h>     // intptr_t
@@ -71,11 +72,6 @@
 // Call ImGui_ImplOpenGL3_Init() with "#version 300 es"
 #if (defined(__APPLE__) && TARGET_OS_IOS) || (defined(__ANDROID__)) || (defined(__EMSCRIPTEN__))
 #define USE_GL_ES3
-#endif
-
-#ifdef USE_GL_ES3
-// OpenGL ES 3
-#include <GLES3/gl3.h>  // Use GL ES 3
 #endif
 
 // OpenGL Data

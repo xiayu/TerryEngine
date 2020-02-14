@@ -8,19 +8,21 @@ namespace Terry {
 		None = 0,
 		WindowClose, WindowResized, WindowFocus, WindowLostFocus, WindowMoved,
 		AppTick, AppUpdate, AppRender,
-		KeyPressed, KeyReleased,
+		KeyPressed, KeyReleased, KeyTyped,
 		MouseButtonPressed, MouseButtonReleased, MouseMoved, MouseScrolled
 	};
 
+	// for filter, ex: keyboard,Mouse ...
 	enum EventCategory {
 		None = 0,
-		EventCategoryApplication = BIT(0),
-		EventCategoryInput = BIT(1),
-		EventCategoryKeyboard = BIT(2),
-		EventCategoryMouse = BIT(3),
-		EventCategoryMouseButton = BIT(4),
+		EventCategoryApplication   = BIT(0),
+		EventCategoryInput         = BIT(1),
+		EventCategoryKeyboard      = BIT(2),
+		EventCategoryMouse         = BIT(3),
+		EventCategoryMouseButton   = BIT(4),
 	};
 
+	// get type is not base on Object, so set it static
 #define EVENT_CLASS_TYPE(type) static EventType GetStaticType(){ return EventType::##type;}\
                                virtual EventType GetEventType() const override{return GetStaticType();}\
                                virtual const char*GetName() const override{return #type;}
@@ -28,23 +30,24 @@ namespace Terry {
 #define EVENT_CLASS_CATEGORY(category) virtual int GetCategoryFlags() const override{return category;}
 
 	class TR_API Event {
-		friend class EventDispatcher;
 	public:
 		virtual EventType GetEventType() const = 0;
 		virtual const char *GetName() const = 0;
 		virtual int GetCategoryFlags() const = 0;
+
 		virtual std::string ToString() const {
 			return GetName();
 		}
+
 		inline bool IsInCategory(EventCategory category) {
 			return GetCategoryFlags() & category;
 		}
-
-	protected:
-		bool m_handled = false;
+	public:
+		bool Handled = false;
 
 	};
 
+	// 这里不定义模板类，而是在类中定义模板方法
 	class TR_API EventDispatcher
 	{
 		template<typename T>
@@ -56,7 +59,7 @@ namespace Terry {
 		template<typename T>
 		bool Dispatch(EventFn<T> func) {
 			if (m_Event.GetEventType() == T::GetStaticType()) {
-				m_Event.m_handled = func(*(T*)&m_Event);
+				m_Event.Handled = func(*(T*)&m_Event);
 				return true;
 			}
 			return false;

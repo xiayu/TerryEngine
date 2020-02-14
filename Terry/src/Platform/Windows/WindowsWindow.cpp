@@ -22,15 +22,18 @@ namespace Terry {
 	{
 		Init(props);
 	}
+
 	WindowsWindow::~WindowsWindow()
 	{
 		Shutdown();
 	}
+
 	void WindowsWindow::OnUpdate()
 	{
 		glfwPollEvents();
 		glfwSwapBuffers(m_Window);
 	}
+
 	void WindowsWindow::SetVSync(bool enabled)
 	{
 		if (enabled) {
@@ -41,10 +44,12 @@ namespace Terry {
 		}
 		m_Data.VSync = enabled;
 	}
+
 	bool WindowsWindow::IsVSync() const
 	{
 		return m_Data.VSync;
 	}
+
 	void WindowsWindow::Init(const WindowProps & props)
 	{
 		m_Data.Title = props.Title;
@@ -54,17 +59,22 @@ namespace Terry {
 		TR_CORE_INFO("Creating window {0} ({1}, {2})", props.Title, props.Width, props.Height);
 		if (!s_GLFWInitialized) {
 			int success = glfwInit();
-			TR_CORE_ASSERT(success£¬ "Could not intialize GLFW");
+			TR_CORE_ASSERT(success, "Could not intialize GLFW");
 			glfwSetErrorCallback(GLFWErrorCallback);
 			s_GLFWInitialized = true;
 		}
+
 		m_Window = glfwCreateWindow((int)props.Width, (int)props.Height, props.Title.c_str(), nullptr, nullptr);
 		glfwMakeContextCurrent(m_Window);
-
+		// init glad
 		int status = gladLoadGLLoader((GLADloadproc)glfwGetProcAddress);
 		TR_CORE_ASSERT(status, "Faild to initialize Glad!");
+
+		// transfer data between callback
 		glfwSetWindowUserPointer(m_Window, &m_Data);//??????
+
 		SetVSync(true);
+
 		// Set GLFW callback
 		glfwSetWindowSizeCallback(m_Window, [](GLFWwindow *window, int width, int height) {
 			WindowData& data = *(WindowData *)glfwGetWindowUserPointer(window);
@@ -104,6 +114,13 @@ namespace Terry {
 			default:
 				break;
 			}
+		});
+
+		glfwSetCharCallback(m_Window, [](GLFWwindow *window, unsigned int keycode) {
+			WindowData& data = *(WindowData *)glfwGetWindowUserPointer(window);
+
+			KeyTypedEvent event(keycode);
+			data.EventCallback(event);
 		});
 
 		glfwSetMouseButtonCallback(m_Window, [](GLFWwindow *window, int button, int action, int mods) {
